@@ -5,20 +5,17 @@ class NameForm extends React.Component {
     super(props);
     this.state = { value: '', textArea: '', selectValue: 'grapefruit', summaryValue: 'Please input your data!' };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleTAChange = this.handleTAChange.bind(this);
-    this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  handleInputChange(e) {
+    const target = e.target;
+    const value = target.value;
+    const name = target.name;
 
-  handleChange(e) {
-    this.setState({ value: e.target.value });
-  }
-  handleTAChange(e) {
-    this.setState({ textArea: e.target.value });
-  }
-  handleSelectChange(e) {
-    this.setState({ selectValue: e.target.value });
+    this.setState({
+      [name]: value
+    });
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -32,18 +29,18 @@ class NameForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <p><label>
           Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          <input type="text" name="value" value={this.state.value} onChange={this.handleInputChange} />
         </label></p>
         <p>
           <label>
             About me:
-            <textarea value={this.state.textArea} onChange={this.handleTAChange} />
+            <textarea name="textArea" value={this.state.textArea} onChange={this.handleInputChange} />
           </label>
         </p>
         <p>
           <label>
             My favorite flavor:
-            <select value={this.state.selectValue} onChange={this.handleSelectChange}>
+            <select name="selectValue" value={this.state.selectValue} onChange={this.handleInputChange}>
               <option value="grapefruit">Grapefruit</option>
               <option value="lime">Lime</option>
               <option value="coconut">Coconut</option>
