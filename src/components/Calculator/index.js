@@ -1,22 +1,14 @@
 import React from 'react';
 
-function Mult05(props) {
+function Mult(props) {
   const number = parseFloat(props.userInput);
+  const multiplier = parseFloat(props.mult);
       if (Number.isNaN(number)) {
         return '';
       }
-      const result = number * 0.5;
+      const result = number * multiplier;
       console.log(result.toString());
-      return <p>{number} * 0.5 is equal to {result.toString()}</p>;
-}
-function Mult005(props) {
-  const number = parseFloat(props.userInput);
-      if (Number.isNaN(number)) {
-        return '';
-      }
-      const result = number * 0.05;
-      console.log(result.toString());
-      return <p>{number} * 0.05 is equal to {result.toString()}</p>;
+      return <p>{number} * {multiplier.toString()} is equal to {result.toString()}</p>;
 }
 
 class Calculator extends React.Component {
@@ -37,8 +29,8 @@ class Calculator extends React.Component {
           <input
             value={userInput}
             onChange={this.handleChange} />
-            <Mult05 userInput={userInput} />
-            <Mult005 userInput={userInput} />
+            <Mult userInput={userInput} mult="0.5"/>
+            <Mult userInput={userInput} mult="0.05"/>
         </fieldset>
       );
     }
